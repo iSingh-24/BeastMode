@@ -1,4 +1,3 @@
-//define the db here and import it to the relationships
 const Sequelize = require('sequelize');
 
 const config = {

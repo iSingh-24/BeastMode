@@ -1,7 +1,5 @@
-const relationships = require('./relationships');
-const db = relationships.db;
-
-//we have to import it like this in order for db to be a top level property
+const db = require('./db');
+require('./relationships');
 
 const init = async () => {
     try {
