@@ -1,14 +1,29 @@
 const router = require('express').Router();
+const User = require('../db/relationships');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        res.send('get route in user');
+        const users = await User.findAll();
+
+        res.send(users);
     } catch (err) {
         console.log(err);
     }
 });
 
-router.post('/', (req, res) => {
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const singleUser = await User.findOne({ where: { id } });
+        singleUser
+            ? res.send(singleUser)
+            : res.status(404).send('User was not in database');
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/', async (req, res) => {
     try {
         res.send('post route in user');
     } catch (err) {
@@ -16,7 +31,7 @@ router.post('/', (req, res) => {
     }
 });
 
-router.put('/', (req, res) => {
+router.put('/', async (req, res) => {
     try {
         res.send('put route in user');
     } catch (err) {
@@ -24,7 +39,7 @@ router.put('/', (req, res) => {
     }
 });
 
-router.delete('/', (req, res) => {
+router.delete('/', async (req, res) => {
     try {
         res.send('delete route in user');
     } catch (err) {
