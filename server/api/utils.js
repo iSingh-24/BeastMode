@@ -3,7 +3,16 @@ const Workout = require('../db/models/Workout');
 
 //user utils
 
-export const getUsers = async () => {
+const createUser = async (payload) => {
+    try {
+        const createdUser = await User.create(payload);
+        return createdUser;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const getUsers = async () => {
     try {
         const users = await User.findAll();
         return users;
@@ -12,7 +21,7 @@ export const getUsers = async () => {
     }
 };
 
-export const getSingleUser = async (userId) => {
+const getSingleUser = async (userId) => {
     try {
         const singleUser = await User.findByPk(userId);
         return singleUser ? singleUser : null;
@@ -21,23 +30,24 @@ export const getSingleUser = async (userId) => {
     }
 };
 
-export const updateUser = async (payload) => {
+const updateUser = async (payload) => {
     try {
         const { id } = payload;
         const userToUpdate = await User.update(payload, { where: { id } });
 
-        if (userToUpdate) {
-            // await userToUpdate.save();
-            return userToUpdate;
-        } else {
-            return null;
-        }
+        // if (userToUpdate) {
+        //     await userToUpdate.save();
+        //     return userToUpdate;
+        // } else {
+        //     return null;
+        // }
+        return userToUpdate;
     } catch (err) {
         console.log(err);
     }
 };
 
-export const deleteUser = async (userId) => {
+const deleteUser = async (userId) => {
     try {
         const userToDelete = await User.findOne({ where: { id: userId } });
         const isDeleted = await userToDelete.destroy();
@@ -51,7 +61,16 @@ export const deleteUser = async (userId) => {
 
 //workout utils
 
-export const getWorkouts = async () => {
+const createWorkout = async (payload) => {
+    try {
+        const createdWorkout = await Workout.create(payload);
+        return createdWorkout;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const getWorkouts = async () => {
     try {
         const workouts = await Workout.findAll();
 
@@ -61,7 +80,7 @@ export const getWorkouts = async () => {
     }
 };
 
-export const getSingleWorkout = async (workoutId) => {
+const getSingleWorkout = async (workoutId) => {
     try {
         const singleWorkout = await Workout.findByPk(workoutId);
         return singleWorkout ? singleWorkout : null;
@@ -70,7 +89,7 @@ export const getSingleWorkout = async (workoutId) => {
     }
 };
 
-export const updateWorkout = async (payload) => {
+const updateWorkout = async (payload) => {
     try {
         const { id } = payload;
 
@@ -89,7 +108,7 @@ export const updateWorkout = async (payload) => {
     }
 };
 
-export const deleteWorkout = async (workoutId) => {
+const deleteWorkout = async (workoutId) => {
     try {
         const deletedWorkout = await Workout.destroy({
             where: { id: workoutId },
@@ -101,4 +120,17 @@ export const deleteWorkout = async (workoutId) => {
     } catch (err) {
         console.log(err);
     }
+};
+
+module.exports = {
+    createUser,
+    getUsers,
+    getSingleUser,
+    updateUser,
+    deleteUser,
+    createWorkout,
+    getWorkouts,
+    getSingleWorkout,
+    updateWorkout,
+    deleteWorkout,
 };

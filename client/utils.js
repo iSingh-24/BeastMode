@@ -23,7 +23,7 @@ export const getSingleUser = async (userId) => {
 export const postUser = async (payload) => {
     try {
         const addedUser = await axios.post(
-            'http://localhost:3000/api/users',
+            'http://localhost:3000/api/user',
             payload
         );
 
@@ -59,7 +59,7 @@ export const getWorkouts = async () => {
 export const getSingleWorkout = async (workoutId) => {
     try {
         const singleWorkout = await axios.get(
-            'http://localhost:3000/api/workouts/:id',
+            'http://localhost:3000/api/workout/:id',
             workoutId
         );
 
@@ -72,7 +72,7 @@ export const getSingleWorkout = async (workoutId) => {
 export const postWorkout = async (payload) => {
     try {
         const addedWorkout = await axios.post(
-            'http://localhost:3000/api/workouts',
+            'http://localhost:3000/api/workout',
             { payload }
         );
     } catch (err) {

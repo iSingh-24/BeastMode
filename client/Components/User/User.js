@@ -8,6 +8,7 @@ const User = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             const { data: users } = await getUsers();
+            console.log(users, 'here are users');
             setUsers(users);
         };
 
@@ -15,7 +16,9 @@ const User = () => {
     }, []);
 
     const usersList = users
-        ? users.map((user) => <li key={user.id}>{user.name}</li>)
+        ? users.map((user) => (
+              <li key={user.id}>{`${user.firstName} ${user.lastName}`}</li>
+          ))
         : null;
 
     return (

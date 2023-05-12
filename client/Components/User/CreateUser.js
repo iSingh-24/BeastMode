@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { postUser } from '../../utils';
 
 const CreateUser = () => {
     const [firstName, setFirstName] = useState('');
@@ -12,8 +13,10 @@ const CreateUser = () => {
         setLastName(value);
     };
 
-    const handleUserSubmit = (event) => {
+    const handleUserSubmit = async (event) => {
         event.preventDefault();
+        const { data: postedUser } = await postUser({ firstName, lastName });
+        console.log(postedUser, 'here is posted user');
     };
 
     return (
@@ -37,6 +40,7 @@ const CreateUser = () => {
                 <br />
                 <button type='submit'>Sign Up</button>
             </form>
+            {/* <button>UpdateUser</button> */}
         </div>
     );
 };
