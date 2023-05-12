@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const User = require('../db/relationships');
+const User = require('../db/models/User');
 
 router.get('/', async (req, res) => {
     try {
         const users = await User.findAll();
+
+        console.log(users, 'here are users');
 
         res.send(users);
     } catch (err) {

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Workout = require('../db/relationships');
+const Workout = require('../db/models/Workout');
 
 router.get('/', async (req, res) => {
     try {
