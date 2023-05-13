@@ -16,7 +16,6 @@ const CreateUser = () => {
     const handleUserSubmit = async (event) => {
         event.preventDefault();
         const { data: postedUser } = await postUser({ firstName, lastName });
-        console.log(postedUser, 'here is posted user');
     };
 
     return (

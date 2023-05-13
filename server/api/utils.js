@@ -24,7 +24,7 @@ const getUsers = async () => {
 const getSingleUser = async (userId) => {
     try {
         const singleUser = await User.findByPk(userId);
-        return singleUser ? singleUser : null;
+        return singleUser;
     } catch (err) {
         console.log(err);
     }
@@ -34,13 +34,6 @@ const updateUser = async (payload) => {
     try {
         const { id } = payload;
         const userToUpdate = await User.update(payload, { where: { id } });
-
-        // if (userToUpdate) {
-        //     await userToUpdate.save();
-        //     return userToUpdate;
-        // } else {
-        //     return null;
-        // }
         return userToUpdate;
     } catch (err) {
         console.log(err);
@@ -83,7 +76,7 @@ const getWorkouts = async () => {
 const getSingleWorkout = async (workoutId) => {
     try {
         const singleWorkout = await Workout.findByPk(workoutId);
-        return singleWorkout ? singleWorkout : null;
+        return singleWorkout;
     } catch (err) {
         console.log(err);
     }
@@ -97,12 +90,7 @@ const updateWorkout = async (payload) => {
             where: { id },
         });
 
-        if (workoutToUpdate) {
-            await workoutToUpdate.save();
-            return workoutToUpdate;
-        } else {
-            return null;
-        }
+        return workoutToUpdate;
     } catch (err) {
         console.log(err);
     }
