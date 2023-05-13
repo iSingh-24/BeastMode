@@ -12,8 +12,7 @@ export const getUsers = async () => {
 export const getSingleUser = async (userId) => {
     try {
         const singleUser = await axios.get(
-            'http://localhost:3000/api/user/:id',
-            userId
+            `http://localhost:3000/api/user/${userId}`
         );
         return singleUser;
     } catch (err) {

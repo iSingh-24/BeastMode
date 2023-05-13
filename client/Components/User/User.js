@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreateUser from './CreateUser';
 import { getUsers } from '../../utils';
+import { Link } from 'react-router-dom';
 
 const User = () => {
     const [users, setUsers] = useState('');
@@ -16,7 +17,11 @@ const User = () => {
 
     const usersList = users
         ? users.map((user) => (
-              <li key={user.id}>{`${user.firstName} ${user.lastName}`}</li>
+              <li key={user.id}>
+                  <Link
+                      to={`/users/${user.id}`}
+                  >{`${user.firstName} ${user.lastName}`}</Link>
+              </li>
           ))
         : null;
 
