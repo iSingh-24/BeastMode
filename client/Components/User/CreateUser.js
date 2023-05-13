@@ -17,6 +17,8 @@ const CreateUser = ({ addUser }) => {
         event.preventDefault();
         const { data: postedUser } = await postUser({ firstName, lastName });
         addUser(postedUser);
+        setFirstName('');
+        setLastName('');
     };
 
     return (
@@ -25,6 +27,7 @@ const CreateUser = ({ addUser }) => {
                 <label htmlFor='firstName'>First Name </label>
                 <input
                     type='text'
+                    value={firstName}
                     onChange={({ target }) => handleFirstName(target)}
                     required
                 />
@@ -33,6 +36,7 @@ const CreateUser = ({ addUser }) => {
                 <label htmlFor='lastName'>Last Name </label>
                 <input
                     type='text'
+                    value={lastName}
                     onChange={({ target }) => handleLastName(target)}
                     required
                 />
