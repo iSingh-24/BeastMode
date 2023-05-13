@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getUsers = async () => {
+const getUsers = async () => {
     try {
         const users = await axios.get('http://localhost:3000/api/user');
         return users;
@@ -9,7 +9,7 @@ export const getUsers = async () => {
     }
 };
 
-export const getSingleUser = async (userId) => {
+const getSingleUser = async (userId) => {
     try {
         const singleUser = await axios.get(
             `http://localhost:3000/api/user/${userId}`
@@ -19,7 +19,7 @@ export const getSingleUser = async (userId) => {
         console.log(err);
     }
 };
-export const postUser = async (payload) => {
+const postUser = async (payload) => {
     try {
         const addedUser = await axios.post(
             'http://localhost:3000/api/user',
@@ -32,7 +32,7 @@ export const postUser = async (payload) => {
     }
 };
 
-export const updateUser = async (payload) => {
+const updateUser = async (payload) => {
     try {
         const { id } = payload;
         const updatedUser = await axios.put(
@@ -46,7 +46,18 @@ export const updateUser = async (payload) => {
     }
 };
 
-export const getWorkouts = async () => {
+const deleteUser = async (userId) => {
+    try {
+        const userDeleted = await axios.delete(
+            `http://localhost:3000/api/user/${userId}`
+        );
+        return userDeleted;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const getWorkouts = async () => {
     try {
         const workouts = await axios.get('http://localhost:3000/api/workouts');
 
@@ -56,7 +67,7 @@ export const getWorkouts = async () => {
     }
 };
 
-export const getSingleWorkout = async (workoutId) => {
+const getSingleWorkout = async (workoutId) => {
     try {
         const singleWorkout = await axios.get(
             `http://localhost:3000/api/workout/${workoutId}`
@@ -68,7 +79,7 @@ export const getSingleWorkout = async (workoutId) => {
     }
 };
 
-export const postWorkout = async (payload) => {
+const postWorkout = async (payload) => {
     try {
         const addedWorkout = await axios.post(
             'http://localhost:3000/api/workout',
@@ -79,7 +90,7 @@ export const postWorkout = async (payload) => {
     }
 };
 
-export const updateWorkout = async (payload) => {
+const updateWorkout = async (payload) => {
     try {
         const { id } = payload;
         const updatedWorkout = await axios.post(
@@ -91,4 +102,28 @@ export const updateWorkout = async (payload) => {
     } catch (err) {
         console.log(err);
     }
+};
+
+const deleteWorkout = async (workoutId) => {
+    try {
+        const deletedWorkout = await axios.delete(
+            `http://localhost:3000/api/workout/${workoutId}`
+        );
+        return deletedWorkout;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export {
+    getUsers,
+    getSingleUser,
+    postUser,
+    updateUser,
+    deleteUser,
+    getWorkouts,
+    getSingleWorkout,
+    postWorkout,
+    updateWorkout,
+    deleteWorkout,
 };

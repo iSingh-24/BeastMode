@@ -40,7 +40,6 @@ const CreateUser = ({ addUser }) => {
                 <br />
                 <button type='submit'>Sign Up</button>
             </form>
-            {/* <button>UpdateUser</button> */}
         </div>
     );
 };
