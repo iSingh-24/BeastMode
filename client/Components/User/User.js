@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CreateUser from './CreateUser';
-import { getUsers } from '../../utils';
+import { getUsers } from '../utils/userUtils';
 import { Link } from 'react-router-dom';
-import { deleteUser } from '../../utils';
+import { deleteUser } from '../utils/userUtils';
 
 const User = () => {
     const [users, setUsers] = useState([]);
