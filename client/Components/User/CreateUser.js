@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { postUser } from '../../utils';
 
-const CreateUser = () => {
+const CreateUser = ({ addUser }) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
@@ -16,6 +16,7 @@ const CreateUser = () => {
     const handleUserSubmit = async (event) => {
         event.preventDefault();
         const { data: postedUser } = await postUser({ firstName, lastName });
+        addUser(postedUser);
     };
 
     return (

@@ -4,7 +4,7 @@ import { getUsers } from '../../utils';
 import { Link } from 'react-router-dom';
 
 const User = () => {
-    const [users, setUsers] = useState('');
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -15,19 +15,21 @@ const User = () => {
         fetchUsers();
     }, []);
 
-    const usersList = users
-        ? users.map((user) => (
-              <li key={user.id}>
-                  <Link
-                      to={`/users/${user.id}`}
-                  >{`${user.firstName} ${user.lastName}`}</Link>
-              </li>
-          ))
-        : null;
+    const updateUsersArray = (user) => {
+        setUsers((prevUsers) => [...prevUsers, user]);
+    };
+
+    const usersList = users.map((user) => (
+        <li key={user.id}>
+            <Link
+                to={`/users/${user.id}`}
+            >{`${user.firstName} ${user.lastName}`}</Link>
+        </li>
+    ));
 
     return (
         <div>
-            <CreateUser />
+            <CreateUser addUser={updateUsersArray} />
             <h3>Users List</h3>
             <ul>{usersList}</ul>
         </div>
