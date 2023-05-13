@@ -1,7 +1,10 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const SingleUser = () => {
-    return <div>Single User</div>;
+    const { id } = useParams();
+
+    return <div>Single User with id {id} is here</div>;
 };
 
 export default SingleUser;
