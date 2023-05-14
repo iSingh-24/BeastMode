@@ -21,6 +21,7 @@ const getSingleUser = async (userId) => {
 };
 const postUser = async (payload) => {
     try {
+        console.log(payload, 'here is payload');
         const addedUser = await axios.post(
             'http://localhost:3000/api/user',
             payload

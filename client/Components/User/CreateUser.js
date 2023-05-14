@@ -25,7 +25,12 @@ const CreateUser = () => {
 
     const handleUserSubmit = async (event) => {
         event.preventDefault();
-        const { data: postedUser } = await postUser({ firstName, lastName });
+        const { data: postedUser } = await postUser({
+            firstName,
+            lastName,
+            username,
+            password,
+        });
         setFirstName('');
         setLastName('');
         setUsername('');
