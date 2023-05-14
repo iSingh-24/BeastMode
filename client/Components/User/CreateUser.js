@@ -4,6 +4,8 @@ import { postUser } from '../utils/userUtils';
 const CreateUser = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleFirstName = ({ value }) => {
         setFirstName(value);
@@ -13,11 +15,21 @@ const CreateUser = () => {
         setLastName(value);
     };
 
+    const handleUsername = ({ value }) => {
+        setUsername(value);
+    };
+
+    const handlePassword = ({ value }) => {
+        setPassword(value);
+    };
+
     const handleUserSubmit = async (event) => {
         event.preventDefault();
         const { data: postedUser } = await postUser({ firstName, lastName });
         setFirstName('');
         setLastName('');
+        setUsername('');
+        setPassword('');
     };
 
     return (
@@ -32,11 +44,32 @@ const CreateUser = () => {
                 />
                 <br />
                 <br />
+
                 <label htmlFor='lastName'>Last Name </label>
                 <input
                     type='text'
                     value={lastName}
                     onChange={({ target }) => handleLastName(target)}
+                    required
+                />
+                <br />
+                <br />
+
+                <label htmlFor='username'>Username </label>
+                <input
+                    type='text'
+                    value={username}
+                    onChange={({ target }) => handleUsername(target)}
+                    required
+                />
+                <br />
+                <br />
+
+                <label htmlFor='password'>Password </label>
+                <input
+                    type='password'
+                    value={password}
+                    onChange={({ target }) => handlePassword(target)}
                     required
                 />
                 <br />
