@@ -35,13 +35,14 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        req.body.password = await bcrypt.hash(password, 5);
+        req.body.password = await bcrypt.hash(req.body.password, 5);
 
         const createdUser = await createUser(req.body);
         createdUser
             ? res.send(createdUser)
             : res.status(404).send('user was not created successfully');
     } catch (err) {
+        res.status(500).send('internal server error');
         console.log(err);
     }
 });

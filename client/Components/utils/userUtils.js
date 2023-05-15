@@ -25,7 +25,6 @@ const postUser = async (payload) => {
             'http://localhost:3000/api/user',
             payload
         );
-
         return addedUser;
     } catch (err) {
         console.log(err);

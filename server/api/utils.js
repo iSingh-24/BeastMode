@@ -8,6 +8,9 @@ const createUser = async (payload) => {
         const createdUser = await User.create(payload);
         return createdUser;
     } catch (err) {
+        //when you throw an error here the error will propagate until it reaches the top level of the application
+        //which in this cause would be the api route handling this function
+        // throw new Error('failed to create user' + err.message);
         console.log(err);
     }
 };
