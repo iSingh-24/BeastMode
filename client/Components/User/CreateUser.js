@@ -31,7 +31,7 @@ const CreateUser = () => {
             username,
             password,
         });
-        console.log(postedUser, 'here is posted user');
+
         setFirstName('');
         setLastName('');
         setUsername('');

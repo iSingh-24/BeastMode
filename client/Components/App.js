@@ -5,6 +5,7 @@ import Navbar from './Navbar/Navbar';
 import Home from './Home/Home';
 import SingleUser from './User/SingleUser';
 import CreateUser from './User/CreateUser';
+import Login from './Login/Login';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ const App = () => {
                 <Route element={<Workout />} exact path='/workouts' />
                 <Route element={<SingleUser />} exact path='/user/:id' />
                 <Route element={<CreateUser />} exact path='/user/create' />
+                <Route element={<Login />} exact path='/login'></Route>
             </Routes>
         </HashRouter>
     );

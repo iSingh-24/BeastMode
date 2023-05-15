@@ -15,6 +15,7 @@ const Navbar = () => {
             {/* <Link to='/users'>Users </Link>
             <Link to='/workouts'>Workouts </Link>
             <Link to='/user/create'>Create User</Link> */}
+            <Link to='/login'>Login</Link>
             <Link to='/user/create'>Sign Up</Link>
         </div>
     );
