@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../db/models/User');
+const bcrypt = require('bcrypt');
 
 const {
     getUsers,
@@ -34,9 +35,9 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        console.log(req.body);
-        const createdUser = await createUser(req.body);
+        req.body.password = await bcrypt.hash(password, 5);
 
+        const createdUser = await createUser(req.body);
         createdUser
             ? res.send(createdUser)
             : res.status(404).send('user was not created successfully');
