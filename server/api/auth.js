@@ -5,7 +5,7 @@ const User = require('../db/models/User');
 
 //i am doing posting new users in my user route, maybe i should move that part over to here?
 
-// router.get('/register', async (req, res) => {
+// router.post('/register', async (req, res) => {
 //     try {
 //     } catch (err) {
 //         console.log(err);
