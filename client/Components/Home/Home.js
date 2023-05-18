@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 
 //TODO: have a logout component on the navbar if the user is logged in
 

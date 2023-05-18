@@ -21,6 +21,16 @@ router.get('/profile', validateToken, (req, res) => {
     }
 });
 
+router.get('/authenticated', (req, res) => {
+    try {
+        const token = req.cookies['access-token'];
+
+        token ? res.send(true) : res.send(false);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 router.post('/logout', (req, res) => {
     try {
         res.clearCookie('access-token', { httpOnly: true });

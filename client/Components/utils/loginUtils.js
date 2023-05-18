@@ -13,4 +13,12 @@ const checkCredentials = async ({ username, password }) => {
     }
 };
 
-export { checkCredentials };
+const checkIfAuthenticated = async () => {
+    const isAuthenticated = await axios.get(
+        'http://localhost:3000/api/auth/authenticated'
+    );
+
+    return isAuthenticated;
+};
+
+export { checkCredentials, checkIfAuthenticated };

@@ -9,7 +9,9 @@ const {
     createUser,
 } = require('./utils');
 
-router.get('/', async (req, res) => {
+const { validateToken } = require('./middleware');
+
+router.get('/', validateToken, async (req, res) => {
     try {
         const users = await getUsers();
         res.send(users);
@@ -18,7 +20,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateToken, async (req, res) => {
     try {
         const { id } = req.params;
 
