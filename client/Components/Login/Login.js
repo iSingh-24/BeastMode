@@ -22,11 +22,12 @@ const Login = () => {
         const foundUser = await checkCredentials({ username, password });
         if (!foundUser) {
             window.alert('invalid user credentials were entered');
+        } else {
+            setAuth(true);
         }
 
         setUsername('');
         setPassword('');
-        setAuth(true);
     };
 
     return (

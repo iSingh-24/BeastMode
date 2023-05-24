@@ -4,15 +4,6 @@ const bcrypt = require('bcrypt');
 const User = require('../db/models/User');
 const { createTokens, validateToken } = require('./middleware');
 
-//i am doing posting new users in my user route, maybe i should move that part over to here?
-
-// router.post('/register', async (req, res) => {
-//     try {
-//     } catch (err) {
-//         console.log(err);
-//     }
-// });
-
 router.get('/profile', validateToken, (req, res) => {
     try {
         res.send('profile route is hit');

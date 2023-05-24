@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { checkIfAuthenticated } from '../utils/loginUtils';
+
 import { GlobalStore } from '../../context/store';
 import axios from 'axios';
 
