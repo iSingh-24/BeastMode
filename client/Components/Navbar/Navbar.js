@@ -1,27 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { checkIfAuthenticated } from '../utils/loginUtils';
+import { GlobalStore } from '../../context/store';
 import axios from 'axios';
 
 const Navbar = () => {
-    const [authenticated, setAuthenticated] = useState(false);
-
-    useEffect(() => {
-        const checkAuth = async () => {
-            const isValid = await checkIfAuthenticated();
-
-            setAuthenticated(isValid.data);
-        };
-
-        checkAuth();
-    }, [authenticated]);
+    const { auth, setAuth } = useContext(GlobalStore);
 
     const logoutHandler = async () => {
         const value = await axios.post('http://localhost:3000/api/auth/logout');
-        setAuthenticated(false);
+        setAuth(false);
     };
 
-    const logout = authenticated ? (
+    const logout = auth ? (
         <div
             style={{
                 display: 'flex',
@@ -39,7 +30,7 @@ const Navbar = () => {
 
     return (
         <div>
-            {!authenticated ? (
+            {!auth ? (
                 <div
                     style={{
                         display: 'flex',

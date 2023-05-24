@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { checkCredentials } from '../utils/loginUtils';
+import { GlobalStore } from '../../context/store';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [validUser, setValidUser] = useState(false);
 
-    useEffect(() => {
-        console.log(validUser, 'here is valid user');
-    }, [validUser]);
+    const { setAuth } = useContext(GlobalStore);
 
     const onUsernameChange = ({ value }) => {
         setUsername(value);
@@ -25,9 +23,10 @@ const Login = () => {
         if (!foundUser) {
             window.alert('invalid user credentials were entered');
         }
-        setValidUser(true);
+
         setUsername('');
         setPassword('');
+        setAuth(true);
     };
 
     return (
