@@ -11,7 +11,6 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 
 /**TODO: Clear the br's
  */
-
 const App = () => {
     return (
         <HashRouter>

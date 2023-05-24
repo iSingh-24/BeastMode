@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import User from './User';
 import { Link } from 'react-router-dom';
-import { getUsers, deleteUser } from '../utils/userUtils';
+import { deleteUser } from '../utils/userUtils';
+import { GlobalStore } from '../../context/store';
 
 const UserList = () => {
-    const [users, setUsers] = useState([]);
-
-    useEffect(() => {
-        const fetchUsers = async () => {
-            const { data: users } = await getUsers();
-            setUsers(users);
-        };
-
-        fetchUsers();
-    }, []);
+    const { state } = useContext(GlobalStore);
+    const { users } = state;
 
     const deleteUserHandler = async (userId) => {
         await deleteUser(userId);
@@ -21,16 +14,21 @@ const UserList = () => {
         setUsers(filteredUsers);
     };
 
-    const usersList = users.map((user) => (
-        <li key={user.id}>
-            <Link to={`/users/${user.id}`}>
-                <User user={user} />
-            </Link>
-            <button type='button' onClick={() => deleteUserHandler(user.id)}>
-                x
-            </button>
-        </li>
-    ));
+    const usersList = users
+        ? users.map((user) => (
+              <li key={user.id}>
+                  <Link to={`/users/${user.id}`}>
+                      <User user={user} />
+                  </Link>
+                  <button
+                      type='button'
+                      onClick={() => deleteUserHandler(user.id)}
+                  >
+                      x
+                  </button>
+              </li>
+          ))
+        : null;
 
     return (
         <div>

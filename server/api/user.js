@@ -11,7 +11,7 @@ const {
 
 const { validateToken } = require('./middleware');
 
-router.get('/', validateToken, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const users = await getUsers();
         res.send(users);
